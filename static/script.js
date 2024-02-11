@@ -19,7 +19,7 @@ function csvToArr(csvData, column) {
   }
 
 async function readCsv() {
-    const response = await fetch('flores_codes.csv');
+    const response = await fetch('../static/flores_codes.csv');
     const csvData = await response.text();
     const language_codes = csvToArr(csvData, 1);
     const language_names = csvToArr(csvData, 0);
@@ -50,8 +50,6 @@ async function createSelectors() {
 
 createSelectors();
 
-// TODO send values of each dropdown menu to flask
-
 async function checkAndTranslate() {
     try {
         const { language_codes, language_names } = await readCsv();
@@ -59,10 +57,13 @@ async function checkAndTranslate() {
         if (language_names.includes(srcInput.value) && language_names.includes(tgtInput.value)) {
             const text = srcTextArea.value;
 
+            tgtTextArea.value = "";
             tgtTextArea.placeholder = 'Wait...';
 
             let src_language = language_codes[language_names.indexOf(srcInput.value)]; 
             let tgt_language = language_codes[language_names.indexOf(tgtInput.value)]; 
+
+            console.log(src_language, tgt_language);
 
             fetch('/translate', {
                 method: 'POST',

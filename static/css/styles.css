@@ -17,31 +17,49 @@
     border-radius: 25px;
     display: grid;
     align-items: center;
-    margin: 3%;
-    padding: 3%;
-    height: 20em;
+    margin: 2rem auto 2rem auto;
+    height: 40vh;
+    width: 90vw;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: 1fr 1fr;
 }
 
 textarea {
-    color: #ffff00;
-    background-color: #439bcc;
+    background-color: #fffdda;
     border-radius: 13px;
     padding: 0.2rem;
-    width: 40%;
+    width: 80%;
     height: 80%;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 2rem auto;
 }
 
 input {
     border-radius: 10px;
-    background-color: #439bcc;
-    padding: 0.5rem;
-    width: 40%;
+    background-color: #fffdda;
+    padding: 0.2rem;
+    width: 80%;
+    height: 30%;
     margin: 0 auto 0 auto;
 }
 
 textarea::placeholder {
-    color: #000080;
+    color: #330000;
+    font-style: italic;
+    opacity: .3;
+}
+
+#buttons {
+    display: grid;
+    align-items: center;
+    margin: 2rem auto 2rem auto;
+    height: 10vh;
+    width: 60vw;
+    grid-template-columns: 1fr 1fr;
+}
+
+button {
+    margin: auto 2em auto 2em;
+    border-radius: 12px;
+    background-color: #439bcc;
+    height: 10vh;
 }
