@@ -5,6 +5,8 @@ console.log("This is translateButton value", translateButton);
 
 translateButton.addEventListener('click', () => {
     const text = textArea.value;
+    const translatedTextArea = document.getElementById('translated_text');
+    translatedTextArea.placeholder = 'Wait...';
     fetch('/translate', {
         method: 'POST',
         body: JSON.stringify({ text }),
@@ -14,7 +16,7 @@ translateButton.addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(translatedText => {
-        const translatedTextArea = document.getElementById('translated_text');
         translatedTextArea.value = translatedText.translated_text;
+        translatedTextArea.placeholder = '';
     });
 });
