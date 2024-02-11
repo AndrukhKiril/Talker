@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    color: #cc9966;
+    background-color: #fffdda;
+}
+
+#title {
+    text-align: center;
+    margin-top: 2%;
+    font-size: 1.5rem;
+}
+
+#texts {
+    background-color: #2779a7;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    margin: 3%;
+    height: 20em;
+}
+
+textarea {
+    color: #ffff00;
+    background-color: #439bcc;
+    border-radius: 13px;
+    margin: auto;
+    padding: 0.5rem;
+    width: 40%;
+    height: 80%;
+}
+
+
+textarea::placeholder {
+    color: #000080;
+}

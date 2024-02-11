@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="../static/css/styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <title>Translator</title>
+    </head>
+
+    <body>
+        <p id="title">TRANSLATOR</p>
+        
+        <div id="texts">
+            <textarea id="text_to_translate" placeholder="Write here a message you want to translate and listen to" row="4" cols="50"></textarea>
+            <textarea id="translated_text" row="4" cols="50" readonly>{{ data }}</textarea>
+        </div>
+
+        <div id="buttons">
+            <button type="button" id="translate-button">Translate</button>
+
+            <div id="player">
+                <i class="material-icons" style="font-size:48px;">volume_up</i>
+                <audio></audio>
+            </div>
+        </div>
+    </body>
+
+    <script src="../static/script.js"></script>
+</html>
