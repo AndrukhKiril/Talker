@@ -3,11 +3,10 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 model = AutoModelForSeq2SeqLM.from_pretrained("facebook/nllb-200-distilled-600M")
 tokenizer = AutoTokenizer.from_pretrained("facebook/nllb-200-distilled-600M")
 
-translator = pipeline('translation', model=model, tokenizer=tokenizer, src_lang="pol_Latn", tgt_lang="eng_Latn")
-
-def translate(text):
+def translate(text, src_lang, tgt_lang):
+    #TODO include selection of source and target languages
+    translator = pipeline('translation', model=model, tokenizer=tokenizer, src_lang=src_lang, tgt_lang=tgt_lang)
     translated_text = translator(text)[0]['translation_text']
-    print(translated_text)
     return translated_text
 
 if __name__ == "__main__":

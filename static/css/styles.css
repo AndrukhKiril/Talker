@@ -15,22 +15,32 @@
 #texts {
     background-color: #2779a7;
     border-radius: 25px;
-    display: flex;
+    display: grid;
     align-items: center;
     margin: 3%;
+    padding: 3%;
     height: 20em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
 }
 
 textarea {
     color: #ffff00;
     background-color: #439bcc;
     border-radius: 13px;
-    margin: auto;
-    padding: 0.5rem;
+    padding: 0.2rem;
     width: 40%;
     height: 80%;
+    margin: 0 auto 0 auto;
 }
 
+input {
+    border-radius: 10px;
+    background-color: #439bcc;
+    padding: 0.5rem;
+    width: 40%;
+    margin: 0 auto 0 auto;
+}
 
 textarea::placeholder {
     color: #000080;

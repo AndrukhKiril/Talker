@@ -12,12 +12,18 @@
         <p id="title">TRANSLATOR</p>
         
         <div id="texts">
+            <input list="src_languages" id="src_input">
+            <datalist id="src_languages"></datalist>
+
+            <input list="tgt_languages" id="tgt_input">
+            <datalist id="tgt_languages"> </datalist>
+
             <textarea id="text_to_translate" placeholder="Write here a message you want to translate and listen to" row="4" cols="50"></textarea>
             <textarea id="translated_text" row="4" cols="50" readonly>{{ data }}</textarea>
         </div>
 
         <div id="buttons">
-            <button type="button" id="translate-button">Translate</button>
+            <button type="button" id="translate_button">Translate</button>
 
             <div id="player">
                 <i class="material-icons" style="font-size:48px;">volume_up</i>
