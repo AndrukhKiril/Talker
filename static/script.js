@@ -39,7 +39,8 @@ async function createSelectors() {
 
             srcLanguages.appendChild(srcOption);
             tgtLanguages.appendChild(tgtOption);        
-        } 
+        }   
+
         srcInput.value = "Polish";
         tgtInput.value = "English";
 
@@ -58,25 +59,27 @@ async function checkAndTranslate() {
             const text = srcTextArea.value;
 
             tgtTextArea.value = "";
-            tgtTextArea.placeholder = 'Wait...';
+            if (srcTextArea.value.trim() !== "") {
+                tgtTextArea.placeholder = 'Wait...';
 
-            let src_language = language_codes[language_names.indexOf(srcInput.value)]; 
-            let tgt_language = language_codes[language_names.indexOf(tgtInput.value)]; 
+                let src_language = language_codes[language_names.indexOf(srcInput.value)]; 
+                let tgt_language = language_codes[language_names.indexOf(tgtInput.value)]; 
 
-            console.log(src_language, tgt_language);
-
-            fetch('/translate', {
-                method: 'POST',
-                body: JSON.stringify({ text, src_language, tgt_language }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(translatedText => {
-                tgtTextArea.value = translatedText.translated_text;
-                tgtTextArea.placeholder = '';
-            });
+                fetch('/translate', {
+                    method: 'POST',
+                    body: JSON.stringify({ text, src_language, tgt_language }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(translatedText => {
+                    tgtTextArea.value = translatedText.translated_text;
+                    tgtTextArea.placeholder = '';
+                });
+            } else {
+                srcTextArea.placeholder = 'Enter a text';
+            }
         } else {
             if (!language_names.includes(srcInput.value)) {
                 console.log(srcLanguages)

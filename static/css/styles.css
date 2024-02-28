@@ -20,7 +20,7 @@
     margin: 2rem auto 2rem auto;
     height: 40vh;
     width: 90vw;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 0.1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 
@@ -31,6 +31,10 @@ textarea {
     width: 80%;
     height: 80%;
     margin: 0 auto 2rem auto;
+}
+
+#translated_text {
+    grid-column: 3;
 }
 
 input {
@@ -62,4 +66,20 @@ button {
     border-radius: 12px;
     background-color: #439bcc;
     height: 10vh;
+    cursor: pointer;
+}
+
+#swap_languages {
+    display: inline-block;
+    
+    background: none;
+
+    font-size: 0;
+    padding: 0;
+
+    text-align: center;
+    width: calc(var(--min-height));
+
+    border-radius: 12px;
+    height: calc(var(--min-width));
 }
