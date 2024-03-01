@@ -107,3 +107,11 @@ tgtTextArea.addEventListener('input', () => {
 translateButton.addEventListener('click', () => {
     checkAndTranslate();
 });
+
+const swapButton = document.getElementById('swap_languages');
+
+swapButton.addEventListener('click', () => {
+    var temp = srcInput.value;
+    srcInput.value = tgtInput.value;
+    tgtInput.value = temp;
+});

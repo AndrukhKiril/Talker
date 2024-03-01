@@ -71,8 +71,7 @@ button {
 
 #swap_languages {
     display: inline-block;
-    
-    background: none;
+    background: #fffdda;
 
     font-size: 0;
     padding: 0;
