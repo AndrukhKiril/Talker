@@ -8,6 +8,13 @@ const tgtLanguages = document.getElementById('tgt_languages');
 let srcInput = document.getElementById('src_input');
 let tgtInput = document.getElementById('tgt_input');
 
+const speech = document.getElementById('speech');
+
+const playButton = document.getElementById('play_audio');
+playButton.disabled = true;
+
+const swapButton = document.getElementById('swap_languages');
+
 function csvToArr(csvData, column) {
     const lines = csvData.trim().split("\n");
     const hasHeader = lines[0].split(",").length > 1;
@@ -19,7 +26,7 @@ function csvToArr(csvData, column) {
   }
 
 async function readCsv() {
-    const response = await fetch('../static/flores_codes.csv');
+    const response = await fetch('../static/language_codes.csv');
     const csvData = await response.text();
     const language_codes = csvToArr(csvData, 1);
     const language_names = csvToArr(csvData, 0);
@@ -51,6 +58,27 @@ async function createSelectors() {
 
 createSelectors();
 
+function checkFile(filePath) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('File not found'));
+      reader.onload = () => resolve(true);
+      reader.readAsDataURL(new Blob([], { type: 'text/plain' })); // Dummy read to trigger error
+    });
+  }
+
+async function playAudio() {
+    try {
+        if (await checkFile('generated_audio.mp3')) {
+            speech.src = '../static/generated_audio.mp3';
+            speech.load();
+            speech.play();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 async function checkAndTranslate() {
     try {
         const { language_codes, language_names } = await readCsv();
@@ -65,6 +93,8 @@ async function checkAndTranslate() {
                 let src_language = language_codes[language_names.indexOf(srcInput.value)]; 
                 let tgt_language = language_codes[language_names.indexOf(tgtInput.value)]; 
 
+                playButton.disabled = true;
+
                 fetch('/translate', {
                     method: 'POST',
                     body: JSON.stringify({ text, src_language, tgt_language }),
@@ -76,6 +106,7 @@ async function checkAndTranslate() {
                 .then(translatedText => {
                     tgtTextArea.value = translatedText.translated_text;
                     tgtTextArea.placeholder = '';
+                    playButton.disabled = false;
                 });
             } else {
                 srcTextArea.placeholder = 'Enter a text';
@@ -108,10 +139,12 @@ translateButton.addEventListener('click', () => {
     checkAndTranslate();
 });
 
-const swapButton = document.getElementById('swap_languages');
-
 swapButton.addEventListener('click', () => {
     var temp = srcInput.value;
     srcInput.value = tgtInput.value;
     tgtInput.value = temp;
+});
+
+playButton.addEventListener('click', () => {
+    playAudio();
 });
